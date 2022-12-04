@@ -10,9 +10,9 @@
 #include <sys/resource.h>
 #include <vector>
 
-#define LIST_ALL_PROCESS_COMMAND "ps fo pid,cpuid,user,pri,ni,state,%cpu,%mem,time,command -A > processList.txt"
-#define FIND_PROCESS_BY_NAME_COMMAND "ps fo pid,cpuid,user,pri,ni,state,%cpu,%mem,time,command -C "
-#define REDIRECT_TO_FILE_COMMAND "> processList.txt"
+#define LIST_ALL_PROCESS_COMMAND "ps fo pid,cpuid,user,pri,ni,state,%cpu,%mem,time,command -A"
+#define FILTER_PROCESS " | grep "
+#define REDIRECT_TO_FILE_COMMAND " > processList.txt"
 #define TEMP_FILE_NAME "processList.txt"
 #define REMOVE_TEMP_FILE "rm processList.txt"
 

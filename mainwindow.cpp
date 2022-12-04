@@ -1,13 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+const vector<string> labels = {"PID", "CPUID", "USER", "PRI", "NI", "S", "%CPU", "%MEM", "TIME", "COMMAND"};
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow){
 
     ui->setupUi(this);
     timer = new QTimer(this);
-    //connect(timer, SIGNAL(timeout()), this, SLOT(generateProcessTable()))
     connect(timer, &QTimer::timeout, this, &MainWindow::generateProcessTable);
     timer->start(1000);
 }
@@ -27,11 +28,11 @@ void MainWindow:: generateProcessTable(){
     ui->processList->setRowCount(rows);
     ui->processList->verticalHeader()->setVisible(false);
 
-    QStringList labels;
+    QStringList strListlabels;
 
     /* add all labels readed from file */
-    for (string label : processList.at(0)) {
-        labels.append(QString::fromStdString(label));
+    for (string label : labels) {
+        strListlabels.append(QString::fromStdString(label));
     }
 
     QTableWidgetItem *item;
@@ -42,8 +43,8 @@ void MainWindow:: generateProcessTable(){
             ui->processList->setItem(i-1, j, item);
         }
     }
-
-    ui->processList->setHorizontalHeaderLabels(labels);
+    ui->processList->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->processList->setHorizontalHeaderLabels(strListlabels);
     ui->processList->resizeColumnsToContents();
 }
 

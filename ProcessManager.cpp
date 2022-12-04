@@ -21,10 +21,13 @@ void ProcessManager::setName(string newProcessName){
 vector<vector<string>> ProcessManager::getAllProcess(){
     vector<vector<string>> processList;
     string command;
+    command = LIST_ALL_PROCESS_COMMAND;
+    bool readSecondLine = true;
     if(*processName == ""){
-        command = LIST_ALL_PROCESS_COMMAND;
+        command.append(REDIRECT_TO_FILE_COMMAND);
     }else{
-        command = FIND_PROCESS_BY_NAME_COMMAND + *processName + REDIRECT_TO_FILE_COMMAND;
+        readSecondLine = false;
+        command.append(FILTER_PROCESS + *processName + REDIRECT_TO_FILE_COMMAND);
     }
 
     system(command.c_str());
@@ -40,14 +43,20 @@ vector<vector<string>> ProcessManager::getAllProcess(){
     string dataLine;
     size_t index;
     int column;
+    if(readSecondLine)
+        getline(file, dataLine);
     while(getline(file, dataLine)){
         column = 0;
         data.clear();
-        while (column < 10) {
-            while(dataLine.at(0) == space[0]){
-                dataLine.erase(0, 1);
+        while (column <= 9) {
+            if(column < 9){
+                while(dataLine.at(0) == space[0]){
+                    dataLine.erase(0, 1);
+                }
+                index = dataLine.find(space);
+            }else{
+                index = dataLine.size();
             }
-            index = dataLine.find(space);
             data.push_back(dataLine.substr(0, index));
             dataLine.erase(0, index + 1);
             column++;
