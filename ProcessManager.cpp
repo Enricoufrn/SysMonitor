@@ -68,3 +68,23 @@ vector<vector<string>> ProcessManager::getAllProcess(){
     return processList;
 }
 
+void ProcessManager::killProcess(int pid){
+    kill(pid, SIGKILL);
+}
+void ProcessManager::stop(int pid){
+    kill(pid, SIGSTOP);
+}
+
+void ProcessManager::continueProcess(int pid){
+    kill(pid, SIGCONT);
+}
+
+void ProcessManager::setCpu(string pid, string cpu){
+    string command = SET_CPU_COMMAND + cpu + " " + pid;
+    system(command.c_str());
+}
+
+void ProcessManager::setPriority(int pid, int priority){
+    int result = setpriority(PRIO_PROCESS, pid , priority);
+    cout << "result = " << result << endl;
+}

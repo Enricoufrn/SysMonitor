@@ -56,3 +56,40 @@ void MainWindow::on_filterBtn_clicked()
     generateProcessTable();
 }
 
+
+void MainWindow::on_killProcessBtn_clicked()
+{
+    QString pid = ui->pidProcess->text();
+    processManager.killProcess(pid.toInt());
+    ui->pidProcess->clear();
+}
+
+
+void MainWindow::on_stopProcessBtn_clicked()
+{
+    QString pid = ui->pidProcess->text();
+    processManager.stop(pid.toInt());
+    ui->pidProcess->clear();
+}
+
+
+
+void MainWindow::on_continueProcessBtn_clicked()
+{
+    QString pid = ui->pidProcess->text();
+    processManager.continueProcess(pid.toInt());
+    ui->pidProcess->clear();
+}
+
+
+void MainWindow::on_applySettingsBtn_clicked()
+{
+    QString pid = ui->pidProcess->text();
+    QString priority = ui->priorityProcess->text();
+    QString cpu = ui->cpu->toPlainText();
+    if(cpu != NULL && cpu != "" && priority != NULL && priority != "" && pid != NULL && pid != ""){
+        processManager.setCpu(pid.toStdString(), cpu.toStdString());
+        processManager.setPriority(pid.toInt(), priority.toInt());
+    }
+}
+

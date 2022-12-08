@@ -21,6 +21,14 @@ public:
 private slots:
     void on_filterBtn_clicked();
 
+    void on_killProcessBtn_clicked();
+
+    void on_stopProcessBtn_clicked();
+
+    void on_continueProcessBtn_clicked();
+
+    void on_applySettingsBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     ProcessManager processManager;

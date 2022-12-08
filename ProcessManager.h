@@ -15,6 +15,7 @@
 #define REDIRECT_TO_FILE_COMMAND " > processList.txt"
 #define TEMP_FILE_NAME "processList.txt"
 #define REMOVE_TEMP_FILE "rm processList.txt"
+#define SET_CPU_COMMAND "taskset -pc "
 
 using namespace std;
 
@@ -25,10 +26,10 @@ public:
     ProcessManager();
     ~ProcessManager();
     vector<vector<string>> getAllProcess();
-    void kill(int pid);
+    void killProcess(int pid);
     void stop(int pid);
     void continueProcess(int pid);
-    void setCpu();
+    void setCpu(string pid, string cpu);
     void setPriority(int pid, int priority);
     void setName(string newProcessName);
 };

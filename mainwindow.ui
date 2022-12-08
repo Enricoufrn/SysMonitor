@@ -83,16 +83,6 @@
      <string>Aplicar</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="cpu">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>630</y>
-      <width>71</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QSpinBox" name="pidProcess">
     <property name="geometry">
      <rect>
@@ -101,6 +91,9 @@
       <width>71</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="maximum">
+     <number>999999</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="priorityProcess">
@@ -111,6 +104,12 @@
       <width>71</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="minimum">
+     <number>-20</number>
+    </property>
+    <property name="maximum">
+     <number>19</number>
     </property>
    </widget>
    <widget class="QTextEdit" name="processName">
@@ -167,12 +166,22 @@
      <rect>
       <x>206</x>
       <y>630</y>
-      <width>91</width>
+      <width>41</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string>CPU</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="cpu">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>630</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
     </property>
    </widget>
   </widget>
